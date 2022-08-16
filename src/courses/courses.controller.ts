@@ -12,10 +12,16 @@ import {
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './createCourseDto.dto';
+import { Cron } from '@nestjs/schedule';
 
 @Controller('courses')
 export class CoursesController {
   constructor(private coursesService: CoursesService) {}
+
+  @Cron('45 * * * * *')
+  handleCron() {
+    console.log('Cron example');
+  }
 
   @Get()
   async getCourses() {
