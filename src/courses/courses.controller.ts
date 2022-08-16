@@ -7,8 +7,11 @@ import {
   Delete,
   Query,
   Put,
+  ValidationPipe,
+  // UsePipes,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
+import { CreateCourseDto } from './createCourseDto.dto';
 
 @Controller('courses')
 export class CoursesController {
@@ -24,8 +27,9 @@ export class CoursesController {
     return await this.coursesService.getCoursesById(courseId);
   }
 
+  // @UsePipes(new ValidationPipe())
   @Post()
-  async addNewCourse(@Body() addData) {
+  async addNewCourse(@Body(new ValidationPipe()) addData: CreateCourseDto) {
     return await this.coursesService.addNewCourse(addData);
   }
 

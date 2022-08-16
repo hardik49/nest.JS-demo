@@ -1,7 +1,9 @@
 dependencies:
-  '@nestjs/common': 9.0.9_4f4e0342fc65b321507c56123ad020a6
+  '@nestjs/common': 9.0.9_02d66f081444430c9a02612f8d586d74
   '@nestjs/core': 9.0.9_66379e6bf09f52000f37af9560a873be
   '@nestjs/platform-express': 9.0.9_577477948134d7a54fc38b2ebc4366b1
+  class-transformer: 0.5.1
+  class-validator: 0.13.2
   reflect-metadata: 0.1.13
   rimraf: 3.0.2
   rxjs: 7.5.6
@@ -835,8 +837,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-xT5uOoIEcaB/Fn6UeF7atfKqKiEEsTeRKPiM55p+e5H9WVw8FC2r4ceZgaINJbsw0QWskVj/ZQadMo6dA6hXxw==
-  /@nestjs/common/9.0.9_4f4e0342fc65b321507c56123ad020a6:
+  /@nestjs/common/9.0.9_02d66f081444430c9a02612f8d586d74:
     dependencies:
+      class-transformer: 0.5.1
+      class-validator: 0.13.2
       iterare: 1.2.1
       reflect-metadata: 0.1.13
       rxjs: 7.5.6
@@ -859,7 +863,7 @@ packages:
       integrity: sha512-FHXRm3gSK24M0vKAkQeyBB+GVJwVf61eqYrst1IMAh6FiTwrS4UMsdXD4p9HosfzPsNf6uD6vL2Mn+qOuXNEbQ==
   /@nestjs/core/9.0.9_66379e6bf09f52000f37af9560a873be:
     dependencies:
-      '@nestjs/common': 9.0.9_4f4e0342fc65b321507c56123ad020a6
+      '@nestjs/common': 9.0.9_02d66f081444430c9a02612f8d586d74
       '@nestjs/platform-express': 9.0.9_577477948134d7a54fc38b2ebc4366b1
       '@nuxtjs/opencollective': 0.3.2
       fast-safe-stringify: 2.1.1
@@ -889,7 +893,7 @@ packages:
       integrity: sha512-wqr/Nqz6U4B2MqbzD6b6eRNgJeZB9FvUQsgHtsTA8g/77ONyLMJcANPoYQcxu39iWCbd4JlIkZ2vXbCeubJaeA==
   /@nestjs/platform-express/9.0.9_577477948134d7a54fc38b2ebc4366b1:
     dependencies:
-      '@nestjs/common': 9.0.9_4f4e0342fc65b321507c56123ad020a6
+      '@nestjs/common': 9.0.9_02d66f081444430c9a02612f8d586d74
       '@nestjs/core': 9.0.9_66379e6bf09f52000f37af9560a873be
       body-parser: 1.20.0
       cors: 2.8.5
@@ -931,7 +935,7 @@ packages:
       integrity: sha512-QU7GbnQvADFXdumcdADmv4vil3bhnYl2IFHWKieRt0MgIhghgBxIB7kDKWhswcuZ0kZztVbyYjo9aCrlf62fcw==
   /@nestjs/testing/9.0.9_927a4fb430995761ab6dfea3e6561577:
     dependencies:
-      '@nestjs/common': 9.0.9_4f4e0342fc65b321507c56123ad020a6
+      '@nestjs/common': 9.0.9_02d66f081444430c9a02612f8d586d74
       '@nestjs/core': 9.0.9_66379e6bf09f52000f37af9560a873be
       '@nestjs/platform-express': 9.0.9_577477948134d7a54fc38b2ebc4366b1
       tslib: 2.4.0
@@ -1857,6 +1861,15 @@ packages:
     dev: true
     resolution:
       integrity: sha512-cOU9usZw8/dXIXKtwa8pM0OTJQuJkxMN6w30csNRUerHfeQ5R6U3kkU/FtJeIf3M202OHfY2U8ccInBG7/xogA==
+  /class-transformer/0.5.1:
+    resolution:
+      integrity: sha512-SQa1Ws6hUbfC98vKGxZH3KFY0Y1lm5Zm0SY8XX9zbK7FJCyVEac3ATW0RIpwzW+oOfmHE5PMPufDG9hCfoEOMw==
+  /class-validator/0.13.2:
+    dependencies:
+      libphonenumber-js: 1.10.12
+      validator: 13.7.0
+    resolution:
+      integrity: sha512-yBUcQy07FPlGzUjoLuUfIOXzgynnQPPruyK1Ge2B74k9ROwnle1E+NxLWnUv5OLU8hA/qL5leAE9XnXq3byaBw==
   /cli-cursor/3.1.0:
     dependencies:
       restore-cursor: 3.1.0
@@ -3593,6 +3606,9 @@ packages:
       node: '>= 0.8.0'
     resolution:
       integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==
+  /libphonenumber-js/1.10.12:
+    resolution:
+      integrity: sha512-xTFBs3ipFQNmjCUkDj6ZzRJvs97IyazFHBKWtrQrLiYs0Zk0GANob1hkMRlQUQXbJrpQGwnI+/yU4oyD4ohvpw==
   /lines-and-columns/1.2.4:
     dev: true
     resolution:
@@ -4935,6 +4951,11 @@ packages:
       node: '>=10.12.0'
     resolution:
       integrity: sha512-74Y4LqY74kLE6IFyIjPtkSTWzUZmj8tdHT9Ii/26dvQ6K9Dl2NbEfj0XgU2sHCtKgt5VupqhlO/5aWuqS+IY1w==
+  /validator/13.7.0:
+    engines:
+      node: '>= 0.10'
+    resolution:
+      integrity: sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==
   /vary/1.1.2:
     engines:
       node: '>= 0.8'
@@ -5137,6 +5158,8 @@ specifiers:
   '@types/supertest': ^2.0.11
   '@typescript-eslint/eslint-plugin': ^5.0.0
   '@typescript-eslint/parser': ^5.0.0
+  class-transformer: ^0.5.1
+  class-validator: ^0.13.2
   eslint: ^8.0.1
   eslint-config-prettier: ^8.3.0
   eslint-plugin-prettier: ^4.0.0
