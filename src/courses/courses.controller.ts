@@ -23,6 +23,30 @@ export class CoursesController {
     console.log('Cron example');
   }
 
+  @Get('/register-subject')
+  async registerCourses() {
+    const courses = await this.coursesService.getRegisteredCourses();
+    const groupedCourses = courses.reduce((acc, curr) => {
+      const course = (acc || []).find((ele) => ele.courseId === curr.courseId);
+      if (course) {
+        course.subjects.push(curr.subject);
+      } else {
+        acc = [
+          ...acc,
+          {
+            courseId: curr.courseId,
+            subjectId: curr.subjectId,
+            course: curr.course,
+            subjects: [curr.subject],
+            id: curr.id,
+          },
+        ];
+      }
+      return acc;
+    }, []);
+    return groupedCourses;
+  }
+
   @Get()
   async getCourses() {
     return await this.coursesService.getCourses();
@@ -39,9 +63,16 @@ export class CoursesController {
     return await this.coursesService.addNewCourse(addData);
   }
 
+  @Post('/register-subject')
+  async registerCourse(@Body() addData) {
+    return await this.coursesService.registerCourse(addData);
+  }
+
   @Delete()
   async deleteCourse(@Query() deleteCourseId) {
-    return await this.coursesService.deleteCourse(deleteCourseId);
+    return await this.coursesService.deleteCourse(
+      Number(deleteCourseId.courseId),
+    );
   }
 
   @Put(':courseId')
