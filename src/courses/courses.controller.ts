@@ -47,6 +47,31 @@ export class CoursesController {
     return groupedCourses;
   }
 
+  @Get('/register-user')
+  async registerUserCourses() {
+    const courses = await this.coursesService.getRegisteredCoursesWithUsers();
+    const groupedCourses = courses.reduce((acc, curr) => {
+      const course = (acc || []).find((ele) => ele.courseId === curr.courseId);
+      const { id, ...rest } = curr.user;
+      if (course) {
+        course.users.push(rest);
+      } else {
+        acc = [
+          ...acc,
+          {
+            courseId: curr.courseId,
+            userId: curr.userId,
+            course: curr.course,
+            users: [rest],
+            // id: curr.id,
+          },
+        ];
+      }
+      return acc;
+    }, []);
+    return groupedCourses;
+  }
+
   @Get()
   async getCourses() {
     return await this.coursesService.getCourses();
@@ -66,6 +91,11 @@ export class CoursesController {
   @Post('/register-subject')
   async registerCourse(@Body() addData) {
     return await this.coursesService.registerCourse(addData);
+  }
+
+  @Post('/register-user')
+  async registerUser(@Body() addData) {
+    return await this.coursesService.registerCourseUser(addData);
   }
 
   @Delete()

@@ -27,7 +27,7 @@ export class UserService {
 
     userRepo.email = payload.email;
     userRepo.password = payload.password;
-    const createdUser = await this.userRepository.create(userRepo);
+    const createdUser = this.userRepository.create(userRepo);
     const user: any = await this.userRepository.save(createdUser);
 
     profileRepo.fullName = payload.fullName;

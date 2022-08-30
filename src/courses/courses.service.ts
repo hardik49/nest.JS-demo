@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CourseEntity } from 'src/model/course.entity';
 import { CourseSubjectRegistrationEntity } from 'src/model/courseSubjectRegistration';
+import { CourseRegistrationEntity } from 'src/model/courseRegistarion.entity';
 import { CreateCourseDto } from './createCourseDto.dto';
 @Injectable()
 export class CoursesService {
@@ -11,6 +12,8 @@ export class CoursesService {
     private courseRepository: Repository<CourseEntity>,
     @InjectRepository(CourseSubjectRegistrationEntity)
     private courseSubjectRepository: Repository<CourseSubjectRegistrationEntity>,
+    @InjectRepository(CourseRegistrationEntity)
+    private courseUserRepository: Repository<CourseRegistrationEntity>,
   ) {}
 
   getCourses(): Promise<any> {
@@ -30,6 +33,16 @@ export class CoursesService {
       resolve(
         this.courseSubjectRepository.find({
           relations: ['course', 'subject'],
+        }),
+      );
+    });
+  }
+
+  getRegisteredCoursesWithUsers(): Promise<any> {
+    return new Promise((resolve) => {
+      resolve(
+        this.courseUserRepository.find({
+          relations: ['course', 'user'],
         }),
       );
     });
@@ -58,6 +71,17 @@ export class CoursesService {
         createRegisterSubject,
       );
       resolve(this.courseSubjectRepository.save(createRegisterSubject));
+    });
+  }
+
+  registerCourseUser(course): Promise<any> {
+    return new Promise((resolve) => {
+      const courseRegister: any = new CourseRegistrationEntity();
+      courseRegister.courseId = course.courseId;
+      courseRegister.userId = course.userId;
+      const createRegisterUser =
+        this.courseUserRepository.create(courseRegister);
+      resolve(this.courseUserRepository.save(createRegisterUser));
     });
   }
 
